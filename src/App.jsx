@@ -27,6 +27,18 @@ export default function App() {
 
   const handleClick = () => {
     setName('Juan') // por que utilizar os hooks? a lógica é tão simples quanto o constructor. é mais abstrato? um pouco. porém torna o código mais ergonômico.
+
+    //é MUITO interessante utilizar o hook useState por conta da imutabilidade que fornece ao estado inicial.
+  }
+
+  const initialValues = {
+    count: 0,
+  }
+
+  const [count, setCount] = useState(initialValues.count);
+  function add1() {
+    setCount(count + 1)
+    console.log(initialValues.count); // aqui, como pode ser visto não é necessária a programação direcionada a objetos ou arrays. o próprio useState já faz esta 'cópia'.
   }
 
   return (
@@ -34,6 +46,7 @@ export default function App() {
       <input onChange={handleChange} />
       <button onClick={handleClick}>setName</button>
       <h1>{name}</h1>
+      <button onClick={add1} >Você me pressionou {count} vezes</button>
     </>
   );
 }
