@@ -33,6 +33,7 @@ export default function App() {
 
   const initialValues = {
     count: 0,
+    liked: false,
   }
 
   const [count, setCount] = useState(initialValues.count);
@@ -41,12 +42,21 @@ export default function App() {
     console.log(initialValues.count); // aqui, como pode ser visto não é necessária a programação direcionada a objetos ou arrays. o próprio useState já faz esta 'cópia'.
   }
 
+  const [like, setLike] = useState(initialValues.liked);
+
+  function iLikedIt(e) {
+    setLike(e.target.checked);
+    console.log(e.target.checked);
+  }
+
   return (
     <>
       <input onChange={handleChange} />
       <button onClick={handleClick}>setName</button>
       <h1>{name}</h1>
       <button onClick={add1} >Você me pressionou {count} vezes</button>
+      <input type="checkbox" name="" id="" checked={like} onChange={iLikedIt}></input>
+      <p>Você {like ? 'gostou' : 'não gostou'} disso.</p>
     </>
   );
 }
